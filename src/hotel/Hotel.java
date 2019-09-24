@@ -2,6 +2,7 @@ package hotel;
 import java.util.ArrayList;
 
 public class Hotel {
+    private Integer id;
     private String name;
     private String address;
     private Integer stars;
@@ -15,6 +16,13 @@ public class Hotel {
         for (int i = 0; i < roomsNum; i++){
             rooms.add(new Room(i+1));
         }
+    }
+    public void addRoom(){
+        this.rooms.add(new Room(rooms.size()+1));
+    }
+
+    public void removeRoom(){
+        this.rooms.remove(rooms.size()-1);
     }
 
     public String getName() {
@@ -49,12 +57,20 @@ public class Hotel {
         this.rooms = rooms;
     }
 
+    public Integer getId() {
+        return id;
+    }
 
-    public class Room {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+
+    private class Room {
         private Integer number;
         private Boolean isFree;
 
-        public Room(Integer number){
+        private Room(Integer number){
             this.number = number;
             this.isFree = true;
         }
