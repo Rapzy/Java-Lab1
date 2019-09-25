@@ -19,6 +19,8 @@ public class Main {
         System.out.println("2) Select hotel;");
         System.out.println("3) Add room;");
         System.out.println("4) Remove room;");
+        hotels.add(new Hotel("Отель DoubleTree by Hilton", "Проспект Победителей, 9", 5, 100));
+        hotels.add(new Hotel("Гостиница Беларусь", "Сторожевская Улица, 15", 3, 100));
 
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
         try {
@@ -78,7 +80,7 @@ public class Main {
                         else{
                             for (int i = 0; i < hotels.size(); i++) {
                                 Hotel tempHotel = hotels.get(i);
-                                System.out.printf("%d) %s %s %s [%d/%d]\n",i+1, tempHotel.getName(),tempHotel.getAddress(), "*".repeat(tempHotel.getStars()),tempHotel.getRooms().size(), tempHotel.getRooms().size());
+                                System.out.printf("%d) %s | %s | %s | [%d/%d]\n",i+1, tempHotel.getName(),tempHotel.getAddress(), "*".repeat(tempHotel.getStars()),tempHotel.getRooms().size(), tempHotel.getRooms().size());
                             }
                         }
                     }
