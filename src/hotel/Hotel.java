@@ -7,6 +7,7 @@ public class Hotel {
     private String address;
     private Integer stars;
     private ArrayList<Room> rooms;
+    private ArrayList<Room> freeRooms;
 
     public Hotel(String name, String address, Integer stars, Integer roomsNum){
         this.name = name;
@@ -16,6 +17,7 @@ public class Hotel {
         for (int i = 0; i < roomsNum; i++){
             rooms.add(new Room(i+1));
         }
+        this.freeRooms = rooms;
     }
     public void addRoom(){
         this.rooms.add(new Room(rooms.size()+1));
@@ -63,6 +65,14 @@ public class Hotel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public ArrayList<Room> getFreeRooms() {
+        return freeRooms;
+    }
+
+    public void setFreeRooms(ArrayList<Room> freeRooms) {
+        this.freeRooms = freeRooms;
     }
 
 

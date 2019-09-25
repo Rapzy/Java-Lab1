@@ -80,7 +80,7 @@ public class Main {
                         else{
                             for (int i = 0; i < hotels.size(); i++) {
                                 Hotel tempHotel = hotels.get(i);
-                                System.out.printf("%d) %s | %s | %s | [%d/%d]\n",i+1, tempHotel.getName(),tempHotel.getAddress(), "*".repeat(tempHotel.getStars()),tempHotel.getRooms().size(), tempHotel.getRooms().size());
+                                System.out.printf("%d) %s | %s | %s | Free rooms: [%d/%d]\n",i+1, tempHotel.getName(),tempHotel.getAddress(), "*".repeat(tempHotel.getStars()),tempHotel.getFreeRooms().size(), tempHotel.getRooms().size());
                             }
                         }
                     }
