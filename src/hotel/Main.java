@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         String cmd;
         ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+        Hotel selectedHotel = null;
         System.out.println("Available commands: ");
         System.out.println("1) Add hotel;");
         System.out.println("2) Select hotel;");
@@ -66,7 +67,7 @@ public class Main {
                                 roomsNum = Integer.parseInt(tempRooms);
                             }
                             catch (Exception e){
-                                System.out.println("Invalid value! Excepted positive integer value.");
+                                System.out.println("[Error] Invalid value! Excepted positive integer value.");
                                 roomsNum = -1;
                             }
                         } while(stars <= 0 || stars > 5);
@@ -82,6 +83,40 @@ public class Main {
                                 Hotel tempHotel = hotels.get(i);
                                 System.out.printf("%d) %s | %s | %s | Free rooms: [%d/%d]\n",i+1, tempHotel.getName(),tempHotel.getAddress(), "*".repeat(tempHotel.getStars()),tempHotel.getFreeRooms().size(), tempHotel.getRooms().size());
                             }
+                            Integer numHotel = -1;
+                            do {
+                                try {
+                                    System.out.print("Select hotel: ");
+                                    String tempHotel = consoleReader.readLine();
+                                    if(isExitCommand(tempHotel)){
+                                        break;
+                                    }
+                                    numHotel = Integer.parseInt(tempHotel);
+                                }
+                                catch (Exception e){
+                                    System.out.println("[Error] Invalid value! Excepted positive integer value.");
+                                    numHotel = -1;
+                                }
+                            } while(numHotel <= 0 || numHotel > hotels.size());
+                            selectedHotel = hotels.get(numHotel-1);
+                        }
+                    }
+                    break;
+                    case ("3"):{
+                        if(selectedHotel == null){
+                            System.out.println("[Error] No selected hotel.");
+                        }
+                        else {
+                            selectedHotel.addRoom();
+                        }
+                    }
+                    break;
+                    case ("4"):{
+                        if(selectedHotel == null){
+                            System.out.println("[Error] No selected hotel.");
+                        }
+                        else {
+                            selectedHotel.removeRoom();
                         }
                     }
                     break;

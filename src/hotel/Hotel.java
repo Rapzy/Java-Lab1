@@ -14,17 +14,22 @@ public class Hotel {
         this.address = address;
         this.stars = stars;
         this.rooms = new ArrayList<Room>();
+        this.freeRooms = new ArrayList<Room>();
         for (int i = 0; i < roomsNum; i++){
-            rooms.add(new Room(i+1));
+            Room newRoom = new Room(i+1);
+            this.rooms.add(newRoom);
+            this.freeRooms.add(newRoom);
         }
-        this.freeRooms = rooms;
     }
     public void addRoom(){
-        this.rooms.add(new Room(rooms.size()+1));
+        Room newRoom = new Room(rooms.size()+1);
+        this.rooms.add(newRoom);
+        this.freeRooms.add(newRoom);
     }
 
     public void removeRoom(){
         this.rooms.remove(rooms.size()-1);
+        this.freeRooms.remove(freeRooms.size()-1);
     }
 
     public String getName() {
