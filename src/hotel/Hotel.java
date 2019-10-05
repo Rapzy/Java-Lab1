@@ -1,26 +1,38 @@
 package hotel;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Hotel {
     private Integer id;
     private String name;
     private String address;
     private Integer stars;
-    private ArrayList<Room> rooms;
-    private ArrayList<Room> freeRooms;
+    private List<Room> rooms;
+    private List<Room> freeRooms;
+    private static List<Hotel> availableHotels = new ArrayList<>();
 
     public Hotel(String name, String address, Integer stars, Integer roomsNum){
         this.name = name;
         this.address = address;
         this.stars = stars;
-        this.rooms = new ArrayList<Room>();
-        this.freeRooms = new ArrayList<Room>();
+        this.rooms = new ArrayList<>();
+        this.freeRooms = new ArrayList<>();
         for (int i = 0; i < roomsNum; i++){
             Room newRoom = new Room(i+1);
             this.rooms.add(newRoom);
             this.freeRooms.add(newRoom);
         }
+        availableHotels.add(this);
     }
+
+    public static List<Hotel> getAvailableHotels() {
+        return availableHotels;
+    }
+
+    public static void setAvailableHotels(List<Hotel> availableHotels) {
+        Hotel.availableHotels = availableHotels;
+    }
+
     public void addRoom(){
         Room newRoom = new Room(rooms.size()+1);
         this.rooms.add(newRoom);
@@ -56,11 +68,11 @@ public class Hotel {
         this.stars = stars;
     }
 
-    public ArrayList<Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(ArrayList<Room> rooms) {
+    public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
 
@@ -72,11 +84,11 @@ public class Hotel {
         this.id = id;
     }
 
-    public ArrayList<Room> getFreeRooms() {
+    public List<Room> getFreeRooms() {
         return freeRooms;
     }
 
-    public void setFreeRooms(ArrayList<Room> freeRooms) {
+    public void setFreeRooms(List<Room> freeRooms) {
         this.freeRooms = freeRooms;
     }
 
