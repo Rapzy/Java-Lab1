@@ -99,29 +99,82 @@ public class Main {
             System.out.println(successText);
         }
     }
+    public static void editHotel() {
+        System.out.printf("1) Name = %s\n", selectedHotel.getName());
+        System.out.printf("2) Address = %s\n", selectedHotel.getAddress());
+        System.out.printf("3) Stars = %d\n", selectedHotel.getStars());
+        System.out.println("Choose field to edit: ");
+        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        Integer numChoice = -1;
+        do {
+            try {
+                String strChoice = consoleReader.readLine();
+                if (isExitCommand(strChoice) || strChoice.isEmpty()) {
+                    return;
+                }
+                numChoice = Integer.parseInt(strChoice);
+            } catch (Exception e) {
+                System.out.println("[Error] Invalid value! Excepted positive integer value.");
+                numChoice = -1;
+            }
+        } while (numChoice < 1 && numChoice > 3);
+        System.out.print("Enter new value: ");
+        do {
+            try {
+                String newValue = consoleReader.readLine();
+                if (isExitCommand(newValue) || newValue.isEmpty()) {
+                    return;
+                }
+                if (numChoice == 1){
+                    selectedHotel.setName(newValue);
+                }
+                else if (numChoice == 2){
+                    selectedHotel.setAddress(newValue);
+                }
+                else if (numChoice == 3) {
+                    Integer newStars;
+                    do {
+                        try {
+                            newStars = Integer.parseInt(newValue);
+                            selectedHotel.setStars(newStars);
+                        } catch (Exception e) {
+                            System.out.println("[Error] Invalid value! Excepted positive integer value.");
+                            newStars = -1;
+                        }
+                    } while (newStars < 1 && newStars > 5);
+                }
+            } catch (Exception e) {
+                System.out.println("[Error] Invalid value! Excepted positive integer value.");
+                numChoice = -1;
+            }
+        } while (numChoice < 1 && numChoice > 3);
+        System.out.println(successText);
+    }
 
     public static void main(String[] args) {
         String cmd;
-        System.out.println("Available commands: ");
-        System.out.println("1) Add hotel;");
-        System.out.println("2) Select hotel;");
-        System.out.println("3) Add room;");
-        System.out.println("4) Remove room;");
         new Hotel("Отель DoubleTree by Hilton", "Проспект Победителей, 9", 5, 100);
         new Hotel("Гостиница Беларусь", "Сторожевская Улица, 15", 3, 100);
 
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
         do {
+            System.out.println("Available commands: ");
+            System.out.println("1) Add hotel;");
+            System.out.println("2) Select hotel;");
+            System.out.println("3) Add room;");
+            System.out.println("4) Remove room;");
+            System.out.println("5) Edit hotel;");
+            System.out.println("6) Delete hotel");
             System.out.print("Enter number of command: ");
             try {
                 cmd = consoleReader.readLine().toLowerCase();
                 if (cmd.equals("1")) {
                     addHotel();
                 }
-                if (cmd.equals("2")) {
+                else if (cmd.equals("2")) {
                     selectHotel();
                 }
-                if (cmd.equals("3")) {
+                else if (cmd.equals("3")) {
                     if (selectedHotel == null) {
                         System.out.println("[Error] No selected hotel.");
                     } else {
@@ -129,11 +182,26 @@ public class Main {
                         System.out.println(successText);
                     }
                 }
-                if (cmd.equals("4")) {
+                else if (cmd.equals("4")) {
                     if (selectedHotel == null) {
                         System.out.println("[Error] No selected hotel.");
                     } else {
                         selectedHotel.removeRoom();
+                        System.out.println(successText);
+                    }
+                }
+                else if (cmd.equals("5")) {
+                    if (selectedHotel == null) {
+                        System.out.println("[Error] No selected hotel.");
+                    } else {
+                        editHotel();
+                    }
+                }
+                else if (cmd.equals("6")) {
+                    if (selectedHotel == null) {
+                        System.out.println("[Error] No selected hotel.");
+                    } else {
+                        Hotel.getAvailableHotels().remove(selectedHotel);
                         System.out.println(successText);
                     }
                 }
