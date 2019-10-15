@@ -1,8 +1,10 @@
 package hotel;
 import java.util.ArrayList;
 import java.util.List;
+import model.Serializer;
 
 public class Hotel {
+    private static Integer freeId = 0;
     private Integer id;
     private String name;
     private String address;
@@ -22,6 +24,12 @@ public class Hotel {
             this.rooms.add(newRoom);
             this.freeRooms.add(newRoom);
         }
+        this.id = freeId;
+        freeId++;
+        availableHotels.add(this);
+        Serializer.serializeObj(this);
+    }
+    public Hotel(){
         availableHotels.add(this);
     }
 

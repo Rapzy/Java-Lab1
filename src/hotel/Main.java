@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import model.Serializer;
 
 public class Main {
     final private static String exitCommand = "exit";
@@ -99,6 +100,7 @@ public class Main {
             System.out.println(successText);
         }
     }
+
     public static void editHotel() {
         System.out.printf("1) Name = %s\n", selectedHotel.getName());
         System.out.printf("2) Address = %s\n", selectedHotel.getAddress());
